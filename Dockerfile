@@ -18,6 +18,7 @@ COPY . .
 RUN composer install --optimize-autoloader --no-dev --no-interaction
 
 RUN php artisan config:cache
+RUN php artisan l5-swagger:generate
 
 EXPOSE 10000
 
