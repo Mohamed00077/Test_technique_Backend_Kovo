@@ -58,7 +58,25 @@ class AuthController extends Controller
     }
 
 
-
+#[OA\Post(
+    path: "/api/login",
+    summary:"Connection d'un utilisateur",
+    tags:["Authentification"],
+    requestBody: new OA\RequestBody(
+        required:true,
+        content: new OA\JsonContent(
+            required:["email","password"],
+            properties:[
+                new OA\Property(property: "email", type:"string", format:"email",example:"momodiabagate71@gmail.com"),
+                new OA\Property(property: "password", type:"string", format:"password", example:"password0007"),
+            ]
+        )
+    ),
+    responses:[
+        new OA\Response(response:200, description:"Utilisateur connecté avec succès"),
+        new OA\Response(response:401, description:"Identifiants invalides"),
+    ]
+)]
     public function login(Request $request){
 
         $credentials = $request->validate([
@@ -67,7 +85,7 @@ class AuthController extends Controller
         ]);
 
         if(!Auth::attempt($credentials)){
-            return response()->json(['message' =>'Identifiants invaliders.'], 401);
+            return response()->json(['message' =>'Identifiants invalides.'], 401);
         }
        
         $user = Auth::user();
