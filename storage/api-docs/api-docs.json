@@ -166,6 +166,9 @@
                     "200": {
                         "description": "profil mis à jour"
                     },
+                    "400": {
+                        "description": "Aucune donnée à mettre à jour"
+                    },
                     "401": {
                         "description": "non authentifié"
                     },
