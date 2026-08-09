@@ -48,6 +48,7 @@ class ProfileController extends Controller
 
     responses:[
         new OA\Response(response:200, description:"profil mis à jour"),
+        new OA\Reponse(response:400, description:"Aucune donnée à mettre à jour"),
         new OA\Response(response:401, description:"non authentifié"),
         new OA\Response(response:422, description:"Erreur de validation")
     ]
@@ -65,8 +66,12 @@ class ProfileController extends Controller
             $validated['password'] = Hash::make($validated['password']);
         }
 
+        if(empty($validated)){
+            return response()->json(['message'=>'Aucune donnée à mettre à jour'], 400);
+        }
+
         $user->update($validated);
 
-        return response()->json(['message'=>'utilisateur modifier']);
+        return response()->json(['message'=>'profil mis à jour.']);
     }
 }
