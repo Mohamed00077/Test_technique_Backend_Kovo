@@ -27,7 +27,31 @@ class ProfileController extends Controller
         return response()->json(['user' => $user]);
     }
 
+#[OA\Put(
+    path:"/api/profile",
+    summary:"Modifier son profile --utilisateur",
+    tags:["Profil"],
+    security:[["bearerAuth" => []]],
+    requestBody:new OA\RequestBody(
+        required:true,
+        content: new OA\JsonContent(
+            required:[],
 
+            properties: [
+                new OA\Property(property: "name", type: "string", example: "Momo Diabagate"),
+                new OA\Property(property: "email", type: "string", format: "email", example: "momodiabagate71@gmail.com"),
+                new OA\Property(property: "password", type: "string", format: "password", example: "password0007"),
+                new OA\Property(property: "password_confirmation", type: "string", format: "password", example: "password0007"),
+            ]
+        )
+    ),
+
+    responses:[
+        new OA\Response(response:200, description:"profil mis à jour"),
+        new OA\Response(response:401, description:"non authentifié"),
+        new OA\Response(response:422, description:"Erreur de validation")
+    ]
+)]
 
     public function update(Request $request){
         $user = auth()->user();
