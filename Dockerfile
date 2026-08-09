@@ -17,9 +17,9 @@ COPY . .
 
 RUN composer install --optimize-autoloader --no-dev --no-interaction
 
-RUN php artisan config:cache
+
 RUN php artisan l5-swagger:generate
 
 EXPOSE 10000
 
-CMD php artisan migrate --force && php artisan serve --host 0.0.0.0 --port $PORT
+CMD php artisan config:cache && php artisan migrate --force && php artisan serve --host 0.0.0.0 --port $PORT
