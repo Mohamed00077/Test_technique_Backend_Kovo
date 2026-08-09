@@ -5,7 +5,7 @@ API REST développée avec Laravel .
 ## Stack technique
 
 - Laravel 13
-- MySQL
+- MySQL (local) / PostgreSQL (production)
 - Laravel Sanctum (authentification par token)
 
 ## Endpoints
@@ -22,7 +22,7 @@ API REST développée avec Laravel .
 1. Cloner le repo
    
    git clone https://github.com/Mohamed00077/Test_technique_Backend_Kovo.git
-   cd kovo-api
+   cd Test_technique_Backend_Kovo
   
 
 2. Installer les dépendances
@@ -38,7 +38,7 @@ API REST développée avec Laravel .
 
 4. Configurer la base de données dans `.env`
    .env
-   DB_CONNECTION=mysql
+   DB_CONNECTION=mysql | pgsql (En prod)
    DB_HOST=127.0.0.1
    DB_PORT=3306
    DB_DATABASE=kovo_api
@@ -61,10 +61,14 @@ API REST développée avec Laravel .
 
 ## Déploiement
 
-- URL API : 
+Le service est hébergé sur le plan gratuit de Render : après 15 minutes 
+d'inactivité, il se met en veille. La première requête suivante peut prendre 
+30-50 secondes le temps du redémarrage.
+
+- URL API : https://kovo-api.onrender.com
 
 ## Documentation API
-
+- URL Documentation : https://kovo-api.onrender.com/api/documentation
 
 
 ## Auteur
